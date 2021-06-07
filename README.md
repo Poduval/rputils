@@ -1,2 +1,5 @@
-# R-Package.rp
-R package with custom functions for personal use
+# Packge RP (rakesh poduval)
+
+## About
+This package contains a personal collection of custom functions 
+
