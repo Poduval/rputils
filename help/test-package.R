@@ -2,13 +2,9 @@
 
 # ==== Application ====
 
-# Use the package ====  
-library("toypackage")
+# Use the package ====
+library("rp")
 
-add(3, 8)
-?add
-
-x <- randomWalk()
-plot(x)
-plot(x, main = "my random walk", col = "red")
+explore(iris$Sepal.Length)
+explore(iris)
 

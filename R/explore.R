@@ -1,10 +1,15 @@
 #' explore method
+#' @description explore method
+#'
 #' @param x vector/data.frame
 #' @return The sum of \code{x} and \code{y}
 #' @examples
 #' explore(iris)
 #' explore(iris$Sepal.Length)
 #' explore(iris, colNames = c('Sepal.Length', 'Petal.Length', 'Species'))
+#'
+#' @importFrom stats quantile sd
+#'
 #' @export
 #'
 explore <- function(x, ...) {
@@ -12,10 +17,14 @@ explore <- function(x, ...) {
 }
 
 #' explore.default
+#' @description explore method for default numeric input
+#'
 #' @param x an input vector
 #' @param rnd rounding off the results
+#' @importFrom stats quantile sd
 #'
-#' @export FALSE
+#' @export
+#'
 explore.default <- function(x, rnd = 4, ...) {
 
   # quick check: input must be numeric
@@ -35,11 +44,16 @@ explore.default <- function(x, rnd = 4, ...) {
 }
 
 #' explore.data.frame
+#' @description explore method for a data.frame
+#'
 #' @param x a data frame
 #' @param rnd rounding off the results
 #' @param colNames vector of column names of the input data.
 #'
-#' @export FALSE
+#' @importFrom stats quantile sd
+#'
+#' @export
+#'
 explore.data.frame <- function(x, rnd = 4, colNames = colnames(x), ...) {
 
   # quick check: input data.frame must have 1 row

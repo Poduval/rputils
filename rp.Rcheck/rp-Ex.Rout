@@ -1,0 +1,85 @@
+
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "rp"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> base::assign(".ExTimings", "rp-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('rp')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("explore")
+> ### * explore
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: explore
+> ### Title: explore method
+> ### Aliases: explore
+> 
+> ### ** Examples
+> 
+> explore(iris)
+               N Mis    Avg Min   P05 P25  Med P75   P95 Max    Std
+Sepal.Length 150   0 5.8433 4.3 4.600 5.1 5.80 6.4 7.255 7.9 0.8281
+Sepal.Width  150   0 3.0573 2.0 2.345 2.8 3.00 3.3 3.800 4.4 0.4359
+Petal.Length 150   0 3.7580 1.0 1.300 1.6 4.35 5.1 6.100 6.9 1.7653
+Petal.Width  150   0 1.1993 0.1 0.200 0.3 1.30 1.8 2.300 2.5 0.7622
+> explore(iris$Sepal.Length)
+    N Mis    Avg Min P05 P25 Med P75   P95 Max    Std
+1 150   0 5.8433 4.3 4.6 5.1 5.8 6.4 7.255 7.9 0.8281
+> explore(iris, colNames = c('Sepal.Length', 'Petal.Length', 'Species'))
+               N Mis    Avg Min P05 P25  Med P75   P95 Max    Std
+Sepal.Length 150   0 5.8433 4.3 4.6 5.1 5.80 6.4 7.255 7.9 0.8281
+Petal.Length 150   0 3.7580 1.0 1.3 1.6 4.35 5.1 6.100 6.9 1.7653
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("explore", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.124 0.007 0.132 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
