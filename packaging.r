@@ -28,7 +28,6 @@ create_package(
     `Authors@R` = pkg_author,
     License = "GPL-3",
     Encoding = "UTF-8",
-    # Depends =  "R (>= 4.0.2)",
     Suggests = "",
     Imports =  c("stats")),
   rstudio = FALSE,
