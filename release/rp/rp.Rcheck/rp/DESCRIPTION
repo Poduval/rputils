@@ -8,13 +8,14 @@ Authors@R:
            role = c("aut", "cre"),
            email = "poduval.rakesh@icloud.com")
 Description: My personal collection of custom functions
-License: GPL-3
+License: GPL-2
 Imports: stats
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-06-07 20:53:07 UTC; rakesh_poduval
+Packaged: 2021-06-08 07:39:44 UTC; rakesh_poduval
 Author: Rakesh Poduval [aut, cre]
 Maintainer: Rakesh Poduval <poduval.rakesh@icloud.com>
+Built: R 4.0.2; ; 2021-06-08 07:39:48 UTC; unix

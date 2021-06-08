@@ -3,6 +3,7 @@ library(devtools)
 
 # ==== Meta information ====
 pkg_name <- "rp"
+pkg_path <- file.path("release", pkg_name)
 pkg_version <- "0.0.1"
 pkg_author <- person("Rakesh", "Poduval",
                      email = "poduval.rakesh@icloud.com",
@@ -15,18 +16,18 @@ RData <- "data"
 # ==== Package setup ====
 
 # clear the directory (to restart package building) ====
-unlink(pkg_name, force = TRUE, recursive = TRUE)
+unlink(pkg_path, force = TRUE, recursive = TRUE)
 
 # Create the package directory ====
 create_package(
-  pkg_name,
+  pkg_path,
   fields = list(
     Title = "rp package",
     Description = "My personal collection of custom functions",
     Version = pkg_version,
     Date = Sys.Date(),
     `Authors@R` = pkg_author,
-    License = "GPL-3",
+    License = "GPL-2",
     Encoding = "UTF-8",
     Suggests = "",
     Imports =  c("stats")),
@@ -36,23 +37,23 @@ create_package(
   open = FALSE)
 
 # Copy the R scripts into sub directory R ====
-file.copy(RFiles, file.path(pkg_name, "R"))
+file.copy(RFiles, file.path(pkg_path, "R"))
 
 # Create Rd files (help files) from roxygen comments ====
-document(pkg_name)
+document(pkg_path)
 
 # Build the package (generates rp.tar.gz) ====
-build(pkg_name)
+build(pkg_path)
 
 # check package ====
-check(pkg_name, check_dir = ".", document = FALSE, manual = TRUE)
+check(pkg_path, check_dir = pkg_path, document = FALSE, manual = TRUE)
 
 if (FALSE) # The two lines above in one
-  check(pkg_name, manual = TRUE)
+  check(pkg_path, manual = TRUE)
 
 # install ====
-install(pkg_name)
+install(pkg_path)
 
 # create win-binary (generates toypackage.zip) ====
-build(pkg_name, binary = TRUE)
+# build(pkg_path, binary = TRUE)
 
