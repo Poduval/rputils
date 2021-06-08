@@ -1,4 +1,4 @@
-# Packge RP (rakesh poduval)
+# The rp packge
 
 ## About
 This package contains a personal collection of custom functions 
