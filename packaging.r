@@ -9,7 +9,7 @@ pkg_author <- person("Rakesh", "Poduval",
                      email = "poduval.rakesh@icloud.com",
                      role = c("aut", "cre"))
 
-RScripts <- c("explore.R")
+RScripts <- c("01-functions-data.R", "02-functions-vectors.R")
 RFiles <- file.path("R", RScripts)
 RData <- "data"
 
@@ -47,9 +47,6 @@ build(pkg_path)
 
 # check package ====
 check(pkg_path, check_dir = pkg_path, document = FALSE, manual = TRUE)
-
-if (FALSE) # The two lines above in one
-  check(pkg_path, manual = TRUE)
 
 # install ====
 install(pkg_path)
