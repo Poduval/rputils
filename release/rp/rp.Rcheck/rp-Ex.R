@@ -18,27 +18,65 @@ library('rp')
 base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 cleanEx()
-nameEx("explore")
-### * explore
+nameEx("print.rp")
+### * print.rp
 
 flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-### Name: explore
-### Title: explore method
-### Aliases: explore
+### Name: print.rp
+### Title: print.rp
+### Aliases: print.rp
 
 ### ** Examples
 
-explore(iris)
-explore(iris$Sepal.Length)
-explore(iris, colNames = c('Sepal.Length', 'Petal.Length', 'Species'))
+as_rp(iris)
 
 
 
 
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("explore", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+base::cat("print.rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("rp_desc")
+### * rp_desc
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: rp_desc
+### Title: rp_desc
+### Aliases: rp_desc
+
+### ** Examples
+
+rp_desc(iris$Sepal.Length)
+rp_desc(iris$Sepal.Length, seq(0, 1, 0.10))
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("rp_desc", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
+nameEx("summary.rp")
+### * summary.rp
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: summary.rp
+### Title: summary.rp
+### Aliases: summary.rp
+
+### ** Examples
+
+summary(as_rp(iris))
+summary(as_rp(CO2))
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("summary.rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 ### * <FOOTER>
 ###
 cleanEx()

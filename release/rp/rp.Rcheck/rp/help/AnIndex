@@ -1,3 +1,4 @@
-explore	explore
-explore.data.frame	explore.data.frame
-explore.default	explore.default
+as_rp	as_rp
+print.rp	print.rp
+rp_desc	rp_desc
+summary.rp	summary.rp

@@ -70,7 +70,7 @@ explore.data.frame <- function(x, rnd = 4, colNames = colnames(x), ...) {
   if (length(c) == 1) { # special case for a single column
     out <- explore.default(x[, c], rnd = rnd)
     rownames(out) <- c
-  } else { # when there are multiple columns to analyse
+  } else { # when there are multiple columns to analyze
     out <- do.call(rbind, apply(x[c], 2, explore.default, rnd = rnd))
   }
   return(out)

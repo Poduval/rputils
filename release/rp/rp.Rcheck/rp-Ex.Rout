@@ -37,43 +37,124 @@ Type 'q()' to quit R.
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 > cleanEx()
-> nameEx("explore")
-> ### * explore
+> nameEx("print.rp")
+> ### * print.rp
 > 
 > flush(stderr()); flush(stdout())
 > 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: explore
-> ### Title: explore method
-> ### Aliases: explore
+> ### Name: print.rp
+> ### Title: print.rp
+> ### Aliases: print.rp
 > 
 > ### ** Examples
 > 
-> explore(iris)
-               N Mis    Avg Min   P05 P25  Med P75   P95 Max    Std
-Sepal.Length 150   0 5.8433 4.3 4.600 5.1 5.80 6.4 7.255 7.9 0.8281
-Sepal.Width  150   0 3.0573 2.0 2.345 2.8 3.00 3.3 3.800 4.4 0.4359
-Petal.Length 150   0 3.7580 1.0 1.300 1.6 4.35 5.1 6.100 6.9 1.7653
-Petal.Width  150   0 1.1993 0.1 0.200 0.3 1.30 1.8 2.300 2.5 0.7622
-> explore(iris$Sepal.Length)
-    N Mis    Avg Min P05 P25 Med P75   P95 Max    Std
-1 150   0 5.8433 4.3 4.6 5.1 5.8 6.4 7.255 7.9 0.8281
-> explore(iris, colNames = c('Sepal.Length', 'Petal.Length', 'Species'))
-               N Mis    Avg Min P05 P25  Med P75   P95 Max    Std
-Sepal.Length 150   0 5.8433 4.3 4.6 5.1 5.80 6.4 7.255 7.9 0.8281
-Petal.Length 150   0 3.7580 1.0 1.3 1.6 4.35 5.1 6.100 6.9 1.7653
+> as_rp(iris)
+top 4 rows: 
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+
+bottom 4 rows: 
+    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+145          6.7         3.3          5.7         2.5 virginica
+146          6.7         3.0          5.2         2.3 virginica
+147          6.3         2.5          5.0         1.9 virginica
+148          6.5         3.0          5.2         2.0 virginica
+149          6.2         3.4          5.4         2.3 virginica
+150          5.9         3.0          5.1         1.8 virginica
 > 
 > 
 > 
 > 
 > base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-> base::cat("explore", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> base::cat("print.rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("rp_desc")
+> ### * rp_desc
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: rp_desc
+> ### Title: rp_desc
+> ### Aliases: rp_desc
+> 
+> ### ** Examples
+> 
+> rp_desc(iris$Sepal.Length)
+    n NAs    avg  p0 p25 p50 p75 p100    std
+1 150   0 5.8433 4.3 5.1 5.8 6.4  7.9 0.8281
+> rp_desc(iris$Sepal.Length, seq(0, 1, 0.10))
+    n NAs    avg  p0 p10 p20  p30 p40 p50 p60 p70  p80 p90 p100    std
+1 150   0 5.8433 4.3 4.8   5 5.27 5.6 5.8 6.1 6.3 6.52 6.9  7.9 0.8281
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("rp_desc", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("summary.rp")
+> ### * summary.rp
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: summary.rp
+> ### Title: summary.rp
+> ### Aliases: summary.rp
+> 
+> ### ** Examples
+> 
+> summary(as_rp(iris))
+$desc
+               n NAs  avg  p0 p25  p50 p75 p100  std
+Sepal.Length 150   0 5.84 4.3 5.1 5.80 6.4  7.9 0.83
+Sepal.Width  150   0 3.06 2.0 2.8 3.00 3.3  4.4 0.44
+Petal.Length 150   0 3.76 1.0 1.6 4.35 5.1  6.9 1.77
+Petal.Width  150   0 1.20 0.1 0.3 1.30 1.8  2.5 0.76
+
+$tables
+$tables$Species
+       level  n
+1     setosa 50
+2 versicolor 50
+3  virginica 50
+
+
+> summary(as_rp(CO2))
+$desc
+        n NAs    avg   p0   p25   p50    p75   p100    std
+conc   84   0 435.00 95.0 175.0 350.0 675.00 1000.0 295.92
+uptake 84   0  27.21  7.7  17.9  28.3  37.12   45.5  10.81
+
+$tables
+$tables$Type
+        level  n
+1      Quebec 42
+2 Mississippi 42
+
+$tables$Treatment
+       level  n
+1 nonchilled 42
+2    chilled 42
+
+
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("summary.rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > ### * <FOOTER>
 > ###
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.118 0.007 0.125 0 0 
+Time elapsed:  0.177 0.009 0.188 0 0 
 > grDevices::dev.off()
 null device 
           1 

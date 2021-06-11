@@ -5,6 +5,11 @@
 # Use the package ====
 library("rp")
 
-explore(iris$Sepal.Length)
-explore(iris)
+df <- as_rp(iris)
+df
+summary(df)
 
+
+df <- as_rp(CO2)
+df
+summary(df)

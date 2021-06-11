@@ -33,7 +33,19 @@ Malformed Description field: should contain one or more complete sentences.
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
 * checking dependencies in R code ... OK
-* checking S3 generic/method consistency ... OK
+* checking S3 generic/method consistency ... WARNING
+print:
+  function(x, ...)
+print.rp:
+  function(x, n)
+
+summary:
+  function(object, ...)
+summary.rp:
+  function(x, round_to)
+
+See section ‘Generic functions and methods’ in the ‘Writing R
+Extensions’ manual.
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
 * checking R code for possible problems ... OK
@@ -43,21 +55,7 @@ Malformed Description field: should contain one or more complete sentences.
 * checking Rd cross-references ... OK
 * checking for missing documentation entries ... OK
 * checking for code/documentation mismatches ... OK
-* checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'explore'
-  ‘...’
-
-Undocumented arguments in documentation object 'explore.data.frame'
-  ‘...’
-
-Undocumented arguments in documentation object 'explore.default'
-  ‘...’
-
-Functions with \usage entries need to have the appropriate \alias
-entries, and all their arguments documented.
-The \usage entries must correspond to syntactically valid R code.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
+* checking Rd \usage sections ... OK
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
