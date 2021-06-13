@@ -51,6 +51,6 @@ check(pkg_path, check_dir = pkg_path, document = FALSE, manual = TRUE)
 # install ====
 install(pkg_path)
 
-# create win-binary (generates toypackage.zip) ====
+# create win-binary (generates rp.zip for windows only) ====
 # build(pkg_path, binary = TRUE)
 

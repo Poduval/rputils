@@ -1,10 +1,13 @@
-# The rp packge
+# The `rp` packge
 
 ## About
-This package contains a personal collection of custom functions 
+This package contains a personal collection of functions for:
+
+  * Data operations
+  * Basic statistics
 
 ## Reference
-http://r-pkgs.had.co.nz/
+Build R packages: http://r-pkgs.had.co.nz/
 
 ## Final product
 `rp.tar.gz`

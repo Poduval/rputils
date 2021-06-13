@@ -1,4 +1,4 @@
 name	user	system	elapsed
-print.rp	0.007	0.001	0.009	
-rp_desc	0.007	0.001	0.008	
-summary.rp	0.012	0.001	0.013	
+print.rp	0.006	0.001	0.007	
+rp_desc	0.007	0.000	0.008	
+summary.rp	0.012	0.000	0.013	
