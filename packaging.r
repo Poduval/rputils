@@ -39,6 +39,12 @@ create_package(
 # Copy the R scripts into sub directory R ====
 file.copy(RFiles, file.path(pkg_path, "R"))
 
+# Add release notes
+if (!dir.exists(file.path(pkg_path, "inst")))
+  dir.create(file.path(pkg_path, "inst"), recursive = T)
+
+file.copy("NEWS.md", file.path(pkg_path, "inst/NEWS"), overwrite = T)
+
 # Create Rd files (help files) from roxygen comments ====
 document(pkg_path)
 

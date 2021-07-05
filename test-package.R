@@ -5,6 +5,8 @@
 # Use the package ====
 library("rp")
 
+news(package = "rp")
+
 df <- as_rp(iris)
 df
 summary(df)
