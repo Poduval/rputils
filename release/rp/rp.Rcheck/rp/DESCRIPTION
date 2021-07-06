@@ -1,7 +1,7 @@
 Package: rp
 Title: rp package
 Version: 0.0.1
-Date: 2021-07-05
+Date: 2021-07-06
 Authors@R: 
     person(given = "Rakesh",
            family = "Poduval",
@@ -15,7 +15,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-07-05 07:12:57 UTC; rakesh_poduval
+Packaged: 2021-07-06 17:16:51 UTC; rakesh_poduval
 Author: Rakesh Poduval [aut, cre]
 Maintainer: Rakesh Poduval <poduval.rakesh@icloud.com>
-Built: R 4.0.2; ; 2021-07-05 07:12:58 UTC; unix
+Built: R 4.0.2; ; 2021-07-06 17:16:53 UTC; unix

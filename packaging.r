@@ -40,10 +40,12 @@ create_package(
 file.copy(RFiles, file.path(pkg_path, "R"))
 
 # Add release notes
-if (!dir.exists(file.path(pkg_path, "inst")))
-  dir.create(file.path(pkg_path, "inst"), recursive = T)
+if (FALSE) {
+  if (!dir.exists(file.path(pkg_path, "inst")))
+    dir.create(file.path(pkg_path, "inst"), recursive = T)
+}
 
-file.copy("NEWS.md", file.path(pkg_path, "inst/NEWS"), overwrite = T)
+file.copy("NEWS.md", pkg_path, overwrite = T)
 
 # Create Rd files (help files) from roxygen comments ====
 document(pkg_path)
