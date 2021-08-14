@@ -1,16 +1,17 @@
 Package: rp
 Title: rp package
-Version: 0.0.1
-Date: 2021-07-06
+Version: 0.0.2
+Date: 2021-08-14
 Authors@R: 
     person(given = "Rakesh",
            family = "Poduval",
            role = c("aut", "cre"),
            email = "poduval.rakesh@icloud.com")
-Description: My personal collection of custom functions
+Description: This is my personal collection of custom functions.
 License: GPL-2
 Imports: 
-    stats
+    stats,
+    utils
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -4,12 +4,14 @@
 \alias{summary.rp}
 \title{summary.rp}
 \usage{
-\method{summary}{rp}(x, round_to = 2)
+\method{summary}{rp}(x, round_to = 2, fct_threshold = 0.3)
 }
 \arguments{
 \item{x}{A rp class object}
 
 \item{round_to}{decimal rounding up to}
+
+\item{fct_threshold}{threshold to consider a character as factor}
 }
 \value{
 summary of the data

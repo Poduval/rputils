@@ -4,7 +4,7 @@
 * using session charset: UTF-8
 * using options ‘--no-manual --as-cran’
 * checking for file ‘rp/DESCRIPTION’ ... OK
-* this is package ‘rp’ version ‘0.0.1’
+* this is package ‘rp’ version ‘0.0.2’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -19,8 +19,7 @@
 * checking installed package size ... OK
 * checking package directory ... OK
 * checking for future file timestamps ... OK
-* checking DESCRIPTION meta-information ... NOTE
-Malformed Description field: should contain one or more complete sentences.
+* checking DESCRIPTION meta-information ... OK
 * checking top-level files ... OK
 * checking for left-over files ... OK
 * checking index information ... OK
@@ -37,12 +36,17 @@ Malformed Description field: should contain one or more complete sentences.
 print:
   function(x, ...)
 print.rp:
-  function(x, n)
+  function(x, n, top, bottom)
+
+print:
+  function(x, ...)
+print.rp_summary:
+  function(x, full)
 
 summary:
   function(object, ...)
 summary.rp:
-  function(x, round_to)
+  function(x, round_to, fct_threshold)
 
 See section ‘Generic functions and methods’ in the ‘Writing R
 Extensions’ manual.
@@ -62,4 +66,4 @@ Extensions’ manual.
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 WARNING, 1 NOTE
+Status: 1 WARNING

@@ -33,6 +33,8 @@ as_rp <- function(x) {
 #'
 #' @param x A rp class object
 #' @param n number of records to display
+#' @param top default is TRUE, prints the top rows
+#' @param bottom defult is TRUE, prints the bottom rows
 #'
 #' @return prints the data
 #'
@@ -64,6 +66,7 @@ print.rp <- function(x, n = 4, top = TRUE, bottom = TRUE) {
 #'
 #' @param x A rp class object
 #' @param round_to decimal rounding up to
+#' @param fct_threshold threshold to consider a character as factor
 #'
 #' @return summary of the data
 #'
@@ -127,7 +130,7 @@ summary.rp <- function(x, round_to = 2, fct_threshold = 0.3) {
 #'
 #' @examples
 #' print(summary(as_rp(iris)))
-#' print(summary(as_rp(iris)), T)
+#' print(summary(as_rp(iris)), TRUE)
 #' @export
 #'
 #' @importFrom utils head tail

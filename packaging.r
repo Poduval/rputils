@@ -4,7 +4,7 @@ library(devtools)
 # ==== Meta information ====
 pkg_name <- "rp"
 pkg_path <- file.path("release", pkg_name)
-pkg_version <- "0.0.1"
+pkg_version <- "0.0.2"
 pkg_author <- person("Rakesh", "Poduval",
                      email = "poduval.rakesh@icloud.com",
                      role = c("aut", "cre"))
@@ -30,7 +30,7 @@ create_package(
     License = "GPL-2",
     Encoding = "UTF-8",
     Suggests = "",
-    Imports =  c("stats", "utils")),
+    Imports =  "stats, utils"),
   rstudio = FALSE,
   roxygen = TRUE,
   check_name = TRUE,
