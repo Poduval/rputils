@@ -23,14 +23,14 @@ create_package(
   pkg_path,
   fields = list(
     Title = "rp package",
-    Description = "My personal collection of custom functions",
+    Description = "This is my personal collection of custom functions.",
     Version = pkg_version,
     Date = Sys.Date(),
     `Authors@R` = pkg_author,
     License = "GPL-2",
     Encoding = "UTF-8",
     Suggests = "",
-    Imports =  c("stats")),
+    Imports =  c("stats", "utils")),
   rstudio = FALSE,
   roxygen = TRUE,
   check_name = TRUE,
@@ -40,11 +40,6 @@ create_package(
 file.copy(RFiles, file.path(pkg_path, "R"))
 
 # Add release notes
-if (FALSE) {
-  if (!dir.exists(file.path(pkg_path, "inst")))
-    dir.create(file.path(pkg_path, "inst"), recursive = T)
-}
-
 file.copy("NEWS.md", pkg_path, overwrite = T)
 
 # Create Rd files (help files) from roxygen comments ====
