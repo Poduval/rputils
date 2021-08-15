@@ -4,10 +4,12 @@
 \alias{as_rp}
 \title{as.rp}
 \usage{
-as_rp(x)
+as_rp(df, fct_threshold = 0.2)
 }
 \arguments{
-\item{x}{data.frame}
+\item{df}{data.frame}
+
+\item{fct_threshold}{threshold to consider a character as factor}
 }
 \value{
 An R object of class \code{rp}

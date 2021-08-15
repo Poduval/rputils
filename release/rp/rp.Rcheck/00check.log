@@ -36,7 +36,7 @@
 print:
   function(x, ...)
 print.rp:
-  function(x, n, top, bottom)
+  function(x, n, top, bottom, vars_only, full)
 
 print:
   function(x, ...)
@@ -46,7 +46,7 @@ print.rp_summary:
 summary:
   function(object, ...)
 summary.rp:
-  function(x, round_to, fct_threshold)
+  function(x, round_to)
 
 See section ‘Generic functions and methods’ in the ‘Writing R
 Extensions’ manual.

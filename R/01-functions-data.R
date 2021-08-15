@@ -1,28 +1,39 @@
 #' as.rp
 #' @description converting a data.frame into \code{rp} class object
 #'
-#' @param x data.frame
-#'
+#' @param df data.frame
+#' @param fct_threshold threshold to consider a character as factor
 #' @return An R object of class \code{rp}
 #'
 #' @export
 #'
-as_rp <- function(x) {
+as_rp <- function(df, fct_threshold = 0.20) {
 
   # expected to be a data.frame with at least one row and one column
-  stopifnot(is.data.frame(x), nrow(x) >= 1, ncol(x) >= 1)
+  stopifnot(is.data.frame(df), nrow(df) >= 1, ncol(df) >= 1)
+  nr <- nrow(df)
 
-  # types of columns
-  nms_cols <- colnames(x)
-  chr_vars <- nms_cols[sapply(x, class) %in% c('character')]
-  fct_vars <- nms_cols[sapply(x, class) %in% c('factor')]
-  num_vars <- nms_cols[sapply(x, class) %in% c('numeric')]
-  int_vars <- nms_cols[sapply(x, class) %in% c('integer')]
-  lgc_vars <- nms_cols[sapply(x, class) %in% c('logical')]
+  # types of columns ====
+  nms_cols <- colnames(df)
+  chr_vars <- nms_cols[sapply(df, class) %in% c('character')]
+  fct_vars <- nms_cols[sapply(df, class) %in% c('factor')]
+  num_vars <- nms_cols[sapply(df, class) %in% c('numeric')]
+  int_vars <- nms_cols[sapply(df, class) %in% c('integer')]
+  lgc_vars <- nms_cols[sapply(df, class) %in% c('logical')]
 
-  # Return rp structure
+  # Check & update factors from the chr variable list ====
+  checkForFactors <- apply(
+    df[chr_vars], 2,
+    function(x) length(unique(x)))/nr <= fct_threshold
+
+  if(any(checkForFactors)) {
+    fct_vars <- c(fct_vars, chr_vars[checkForFactors])
+    chr_vars <- chr_vars[chr_vars[!checkForFactors]]
+  }
+
+  # Return rp structure ====
   structure(
-    list(df = x, chr_vars = chr_vars, fct_vars = fct_vars,
+    list(df = df, chr_vars = chr_vars, fct_vars = fct_vars,
          num_vars = num_vars, int_vars = int_vars,
          lgc_vars = lgc_vars),
     class = "rp")
@@ -34,7 +45,9 @@ as_rp <- function(x) {
 #' @param x A rp class object
 #' @param n number of records to display
 #' @param top default is TRUE, prints the top rows
-#' @param bottom defult is TRUE, prints the bottom rows
+#' @param bottom default is TRUE, prints the bottom rows
+#' @param vars_only default is FALSE, if TRUE prints only the variables
+#' @param full default is FALSE, if TRUE prints the full structure
 #'
 #' @return prints the data
 #'
@@ -45,19 +58,27 @@ as_rp <- function(x) {
 #'
 #' @importFrom utils head tail
 #'
-print.rp <- function(x, n = 4, top = TRUE, bottom = TRUE) {
-  df <- x$df
-  df.top <- head(df)
-  df.bottom <- tail(df)
-  if (top) {
-    cat(sprintf("top %i rows: \n", n))
-    print(df.top)
-    cat("\n")
-  }
-  if (bottom) {
-    cat(sprintf("bottom %i rows: \n", n))
-    print(df.bottom)
-    cat("\n")
+print.rp <- function(x, n = 4, top = TRUE, bottom = TRUE, vars_only = FALSE,
+                     full = FALSE) {
+
+  if(full) print.default(x) else {
+    if (vars_only) {
+      print.default(x[setdiff(names(x), "df")])
+    } else {
+      df <- x$df
+      df.top <- head(df, n)
+      df.bottom <- tail(df, n)
+      if (top) {
+        cat(sprintf("top %i rows: \n", n))
+        print.data.frame(df.top)
+        cat("\n")
+      }
+      if (bottom) {
+        cat(sprintf("bottom %i rows: \n", n))
+        print.data.frame(df.bottom)
+        cat("\n")
+      }
+    }
   }
 }
 
@@ -66,7 +87,6 @@ print.rp <- function(x, n = 4, top = TRUE, bottom = TRUE) {
 #'
 #' @param x A rp class object
 #' @param round_to decimal rounding up to
-#' @param fct_threshold threshold to consider a character as factor
 #'
 #' @return summary of the data
 #'
@@ -77,7 +97,7 @@ print.rp <- function(x, n = 4, top = TRUE, bottom = TRUE) {
 #'
 #' @importFrom stats setNames
 #'
-summary.rp <- function(x, round_to = 2, fct_threshold = 0.3) {
+summary.rp <- function(x, round_to = 2) {
 
   # Initiate
   df <- x$df
@@ -88,14 +108,6 @@ summary.rp <- function(x, round_to = 2, fct_threshold = 0.3) {
   desc_vars <- c(x$num_vars, x$int_vars)
   chr_vars <- x$chr_vars
   tab_vars <- c(x$fct_vars, x$lgc_vars)
-  checkForFactors <- apply(
-    df[chr_vars], 2,
-    function(x) length(unique(x)))/nr <= fct_threshold
-
-  if(any(checkForFactors)) {
-    tab_vars <- c(tab_vars, chr_vars[checkForFactors])
-    chr_vars <- chr_vars[chr_vars[!checkForFactors]]
-  }
 
   # Handling numeric and integer columns ====
   if(length(desc_vars)) {

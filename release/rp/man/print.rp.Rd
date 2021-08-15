@@ -4,7 +4,7 @@
 \alias{print.rp}
 \title{print.rp}
 \usage{
-\method{print}{rp}(x, n = 4, top = TRUE, bottom = TRUE)
+\method{print}{rp}(x, n = 4, top = TRUE, bottom = TRUE, vars_only = FALSE, full = FALSE)
 }
 \arguments{
 \item{x}{A rp class object}
@@ -13,7 +13,11 @@
 
 \item{top}{default is TRUE, prints the top rows}
 
-\item{bottom}{defult is TRUE, prints the bottom rows}
+\item{bottom}{default is TRUE, prints the bottom rows}
+
+\item{vars_only}{default is FALSE, if TRUE prints only the variables}
+
+\item{full}{default is FALSE, if TRUE prints the full structure}
 }
 \value{
 prints the data
