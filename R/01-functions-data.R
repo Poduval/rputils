@@ -124,10 +124,13 @@ summary.rp <- function(x, round_to = 2) {
   # Handling factors & logical ====
   if(length(tab_vars)) {
     df[tab_vars] <- lapply(df[tab_vars], as.factor)
-    ll <- unlist(lapply(tab_vars, function(x) length(df[[x]])))
+
+    # adding length of the factor levels
+    ll <- unlist(lapply(tab_vars, function(x) length(levels(df[[x]]))))
     names(ll) <- tab_vars
     output[["factorLevelLength"]] <- ll
 
+    # adding frequency table for the factor variables
     yy <- lapply(tab_vars, function(x) {
       setNames(data.frame(table(df[tab_vars][x])), c("level", "n"))})
     names(yy) <- tab_vars
