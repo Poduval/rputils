@@ -4,7 +4,7 @@ library(devtools)
 # ==== Meta information ====
 pkg_name <- "rp"
 pkg_path <- file.path("release", pkg_name)
-pkg_version <- "0.0.2"
+pkg_version <- "0.0.3"
 pkg_author <- person("Rakesh", "Poduval",
                      email = "poduval.rakesh@icloud.com",
                      role = c("aut", "cre"))
@@ -22,7 +22,7 @@ unlink(pkg_path, force = TRUE, recursive = TRUE)
 create_package(
   pkg_path,
   fields = list(
-    Title = "rp package",
+    Title = "Rakesh Poduval's personal package",
     Description = "This is my personal collection of custom functions.",
     Version = pkg_version,
     Date = Sys.Date(),
@@ -54,6 +54,11 @@ check(pkg_path, check_dir = pkg_path, document = FALSE, manual = TRUE)
 # install ====
 install(pkg_path)
 
- # create win-binary (generates rp.zip for windows only) ====
+# create win-binary (generates rp.zip for windows only) ====
 # build(pkg_path, binary = TRUE)
 
+# Some quick checks ====
+# Start a fresh session
+packageDescription("rp")
+news(package = "rp")
+print(summary(rp:::as_rp(iris)), full = T)
