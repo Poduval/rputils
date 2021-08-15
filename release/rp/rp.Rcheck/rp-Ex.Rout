@@ -173,7 +173,7 @@ uptake 84   0  27.21  7.7  17.9  28.3  37.12   45.5  10.81
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.205 0.009 0.215 0 0 
+Time elapsed:  0.212 0.009 0.222 0 0 
 > grDevices::dev.off()
 null device 
           1 
