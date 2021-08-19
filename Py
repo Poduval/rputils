@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Sep 22 16:43:45 2020
+
+@author: deeplearning
+"""
+import pandas as pd
+import seaborn as sns
+
+
+class ExploreData():
+    
+    pi = 3.14
+    
+    def __init__(self, data=pd.DataFrame()):
+        self.data = data
+        
+    def summary(self, arg=str):
+        summary = self.data.describe()
+        print(arg)
+        return summary
+    
+    def plot(self):
+        fig = sns.pairplot(self.data)
+        return fig
+
+
+iris = sns.load_dataset('iris')
+a = ExploreData(data = iris)
