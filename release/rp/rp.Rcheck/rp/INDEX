@@ -1,5 +1,5 @@
 as_rp                   as.rp
 print.rp                print.rp
-print.rp_summary        print.rp_summary
+print.summary.rp        print.summary.rp
 rp_desc                 rp_desc
 summary.rp              summary.rp

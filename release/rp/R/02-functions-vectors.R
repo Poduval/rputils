@@ -1,11 +1,9 @@
 #' rp_desc
 #' @description calculates basic statistics of a give inout vector
-#'
 #' @param x an input vector
 #' @param pr quantiles needs to be calculated, must be between (0, 1)
 #' @param round_to rounding off the results
 #' @importFrom stats quantile sd
-#'
 #' @examples
 #' rp_desc(iris$Sepal.Length)
 #' rp_desc(iris$Sepal.Length, seq(0, 1, 0.10))

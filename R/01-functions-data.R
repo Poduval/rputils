@@ -42,7 +42,7 @@ as_rp <- function(df, fct_threshold = 0.20) {
 
 #' print.rp
 #' @description print method for class \code{rp}
-#' @param x A rp class object
+#' @param rp A rp class object
 #' @param n number of records to display
 #' @param top default is TRUE, prints the top rows
 #' @param bottom default is TRUE, prints the bottom rows
@@ -50,7 +50,7 @@ as_rp <- function(df, fct_threshold = 0.20) {
 #' @examples
 #' as_rp(iris)
 #' @export
-#' @importFrom utils head tail
+#' @importFrom utils head tail str
 #'
 print.rp <- function(rp, n = 4, top = TRUE, bottom = TRUE) {
   df <- rp$df
@@ -58,18 +58,18 @@ print.rp <- function(rp, n = 4, top = TRUE, bottom = TRUE) {
   df.bottom <- tail(df, n)
   if (top) {
     cat(sprintf("top %i rows: \n", n))
-    cat("---------------------------------- \n")
+    cat("-------------------------------------- \n")
     print.data.frame(df.top)
     cat("\n")
   }
   if (bottom) {
     cat(sprintf("bottom %i rows: \n", n))
-    cat("---------------------------------- \n")
+    cat("-------------------------------------- \n")
     print.data.frame(df.bottom)
   }
   cat("\n")
   cat("Additional info (attributes) : \n")
-  cat("---------------------------------- \n")
+  cat("-------------------------------------- \n")
   cat(str(attributes(rp)))
 }
 
@@ -130,8 +130,6 @@ summary.rp <- function(x, round_to = 2) {
 #' print.summary.rp
 #' @description print method for class \code{summary.rp}
 #' @param x A summary.rp class object
-#' @param full default FALSE, prints only descriptive statatics,
-#'             if TRUE prints all output
 #' @return prints summary statistics
 #' @examples
 #' print(summary(as_rp(iris)))
@@ -143,12 +141,12 @@ print.summary.rp <- function(x) {
 
   if(nrow(x$descriptives) > 0) {
     cat("1. Descriptives of numeric variables: \n")
-    cat("------------------------------------- \n")
+    cat("-------------------------------------- \n")
     print.data.frame(x$descriptives)
     cat("\n")
   } else {
     cat("No numeric variables found: \n")
-    cat("------------------------------------- \n")
+    cat("-------------------------------------- \n")
     cat("\n")
   }
 
@@ -158,11 +156,11 @@ print.summary.rp <- function(x) {
     cat("-------------------------------------- \n")
     cat("\n")
     cat("2.1 Number of levels: \n")
-    cat("------------------------------------------- \n")
+    cat("-------------------------------------- \n")
     print(x$factorLevelLength)
     cat("\n")
     cat("2.2 Frequency of levels: \n")
-    cat("------------------------------------- \n")
+    cat("-------------------------------------- \n")
     print(x$tables)
   }
 }

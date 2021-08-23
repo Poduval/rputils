@@ -17,3 +17,6 @@ An R object of class \code{rp}
 \description{
 converting a data.frame into \code{rp} class object
 }
+\examples{
+as_rp(iris)
+}

@@ -2,6 +2,8 @@
     
 * Fixed bug with the calculation of `factorLevelLength`.
 * Updated the package description.
+* Updated strcture of `rp` class 
+* Modified printing methods for `rp` & `summary.rp`
   
 # Changes in version 0.0.2
 

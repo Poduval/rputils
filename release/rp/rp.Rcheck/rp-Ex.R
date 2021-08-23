@@ -18,6 +18,25 @@ library('rp')
 base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 cleanEx()
+nameEx("as_rp")
+### * as_rp
+
+flush(stderr()); flush(stdout())
+
+base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+### Name: as_rp
+### Title: as.rp
+### Aliases: as_rp
+
+### ** Examples
+
+as_rp(iris)
+
+
+
+base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+base::cat("as_rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+cleanEx()
 nameEx("print.rp")
 ### * print.rp
 
@@ -34,29 +53,28 @@ as_rp(iris)
 
 
 
-
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
 base::cat("print.rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
-nameEx("print.rp_summary")
-### * print.rp_summary
+nameEx("print.summary.rp")
+### * print.summary.rp
 
 flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-### Name: print.rp_summary
-### Title: print.rp_summary
-### Aliases: print.rp_summary
+### Name: print.summary.rp
+### Title: print.summary.rp
+### Aliases: print.summary.rp
 
 ### ** Examples
 
 print(summary(as_rp(iris)))
-print(summary(as_rp(iris)), TRUE)
+print(summary(as_rp(CO2)))
 
 
 
 base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("print.rp_summary", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+base::cat("print.summary.rp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("rp_desc")
 ### * rp_desc

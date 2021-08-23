@@ -36,12 +36,12 @@
 print:
   function(x, ...)
 print.rp:
-  function(x, n, top, bottom, vars_only, full)
+  function(rp, n, top, bottom)
 
 print:
   function(x, ...)
-print.rp_summary:
-  function(x, full)
+print.summary.rp:
+  function(x)
 
 summary:
   function(object, ...)

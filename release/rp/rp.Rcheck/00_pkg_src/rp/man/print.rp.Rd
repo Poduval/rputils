@@ -4,20 +4,16 @@
 \alias{print.rp}
 \title{print.rp}
 \usage{
-\method{print}{rp}(x, n = 4, top = TRUE, bottom = TRUE, vars_only = FALSE, full = FALSE)
+\method{print}{rp}(rp, n = 4, top = TRUE, bottom = TRUE)
 }
 \arguments{
-\item{x}{A rp class object}
+\item{rp}{A rp class object}
 
 \item{n}{number of records to display}
 
 \item{top}{default is TRUE, prints the top rows}
 
 \item{bottom}{default is TRUE, prints the bottom rows}
-
-\item{vars_only}{default is FALSE, if TRUE prints only the variables}
-
-\item{full}{default is FALSE, if TRUE prints the full structure}
 }
 \value{
 prints the data
@@ -27,5 +23,4 @@ print method for class \code{rp}
 }
 \examples{
 as_rp(iris)
-
 }

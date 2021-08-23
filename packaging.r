@@ -61,4 +61,4 @@ install(pkg_path)
 # Start a fresh session
 packageDescription("rp")
 news(package = "rp")
-print(summary(rp:::as_rp(iris)), full = T)
+summary(rp:::as_rp(iris))
