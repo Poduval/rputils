@@ -1,10 +1,10 @@
 #' as.rp
 #' @description converting a data.frame into \code{rp} class object
-#'
 #' @param df data.frame
 #' @param fct_threshold threshold to consider a character as factor
 #' @return An R object of class \code{rp}
-#'
+#' @examples
+#' as_rp(iris)
 #' @export
 #'
 as_rp <- function(df, fct_threshold = 0.20) {
@@ -32,69 +32,56 @@ as_rp <- function(df, fct_threshold = 0.20) {
   }
 
   # Return rp structure ====
-  structure(
-    list(df = df, chr_vars = chr_vars, fct_vars = fct_vars,
-         num_vars = num_vars, int_vars = int_vars,
-         lgc_vars = lgc_vars),
-    class = "rp")
+  structure(list(df = df),
+            chr_vars = chr_vars, fct_vars = fct_vars,
+            num_vars = num_vars, int_vars = int_vars,
+            lgc_vars = lgc_vars,
+            class = "rp",
+            methods = c("print", "summary"))
 }
 
 #' print.rp
 #' @description print method for class \code{rp}
-#'
 #' @param x A rp class object
 #' @param n number of records to display
 #' @param top default is TRUE, prints the top rows
 #' @param bottom default is TRUE, prints the bottom rows
-#' @param vars_only default is FALSE, if TRUE prints only the variables
-#' @param full default is FALSE, if TRUE prints the full structure
-#'
 #' @return prints the data
-#'
 #' @examples
 #' as_rp(iris)
-#'
 #' @export
-#'
 #' @importFrom utils head tail
 #'
-print.rp <- function(x, n = 4, top = TRUE, bottom = TRUE, vars_only = FALSE,
-                     full = FALSE) {
-
-  if(full) print.default(x) else {
-    if (vars_only) {
-      print.default(x[setdiff(names(x), "df")])
-    } else {
-      df <- x$df
-      df.top <- head(df, n)
-      df.bottom <- tail(df, n)
-      if (top) {
-        cat(sprintf("top %i rows: \n", n))
-        print.data.frame(df.top)
-        cat("\n")
-      }
-      if (bottom) {
-        cat(sprintf("bottom %i rows: \n", n))
-        print.data.frame(df.bottom)
-        cat("\n")
-      }
-    }
+print.rp <- function(rp, n = 4, top = TRUE, bottom = TRUE) {
+  df <- rp$df
+  df.top <- head(df, n)
+  df.bottom <- tail(df, n)
+  if (top) {
+    cat(sprintf("top %i rows: \n", n))
+    cat("---------------------------------- \n")
+    print.data.frame(df.top)
+    cat("\n")
   }
+  if (bottom) {
+    cat(sprintf("bottom %i rows: \n", n))
+    cat("---------------------------------- \n")
+    print.data.frame(df.bottom)
+  }
+  cat("\n")
+  cat("Additional info (attributes) : \n")
+  cat("---------------------------------- \n")
+  cat(str(attributes(rp)))
 }
 
 #' summary.rp
 #' @description summary method for class \code{rp}
-#'
 #' @param x A rp class object
 #' @param round_to decimal rounding up to
-#'
 #' @return summary of the data
-#'
 #' @examples
 #' summary(as_rp(iris))
 #' summary(as_rp(CO2))
 #' @export
-#'
 #' @importFrom stats setNames
 #'
 summary.rp <- function(x, round_to = 2) {
@@ -105,9 +92,9 @@ summary.rp <- function(x, round_to = 2) {
   output <- list()
 
   # Setup different variables for analysis ====
-  desc_vars <- c(x$num_vars, x$int_vars)
-  chr_vars <- x$chr_vars
-  tab_vars <- c(x$fct_vars, x$lgc_vars)
+  desc_vars <- c(attr(x, "num_vars"), attr(x, "int_vars"))
+  chr_vars <- attr(x, "chr_vars")
+  tab_vars <- c(attr(x, "fct_vars"), attr(x, "lgc_vars"))
 
   # Handling numeric and integer columns ====
   if(length(desc_vars)) {
@@ -132,30 +119,51 @@ summary.rp <- function(x, round_to = 2) {
 
     # adding frequency table for the factor variables
     yy <- lapply(tab_vars, function(x) {
-      setNames(data.frame(table(df[tab_vars][x])), c("level", "n"))})
-    names(yy) <- tab_vars
-    output[["tables"]] <- yy
+      field_names <- c("variable", "level", "n")
+      setNames(data.frame(x, table(df[tab_vars][x])), field_names)})
+    output[["tables"]] <- do.call(rbind, yy)
   }
   # Final output ====
-  structure(output, class = "rp_summary")
+  structure(output, class = "summary.rp")
 }
 
-#' print.rp_summary
-#' @description print method for class \code{rp_summary}
-#'
-#' @param x A rp_summary class object
+#' print.summary.rp
+#' @description print method for class \code{summary.rp}
+#' @param x A summary.rp class object
 #' @param full default FALSE, prints only descriptive statatics,
 #'             if TRUE prints all output
 #' @return prints summary statistics
-#'
 #' @examples
 #' print(summary(as_rp(iris)))
-#' print(summary(as_rp(iris)), TRUE)
+#' print(summary(as_rp(CO2)))
 #' @export
-#'
 #' @importFrom utils head tail
 #'
-print.rp_summary <- function(x, full = FALSE) {
-  if(full) print.default(x) else print.data.frame(x$descriptives)
+print.summary.rp <- function(x) {
+
+  if(nrow(x$descriptives) > 0) {
+    cat("1. Descriptives of numeric variables: \n")
+    cat("------------------------------------- \n")
+    print.data.frame(x$descriptives)
+    cat("\n")
+  } else {
+    cat("No numeric variables found: \n")
+    cat("------------------------------------- \n")
+    cat("\n")
+  }
+
+  if (length(x$factorLevelLength)) {
+
+    cat("2. Desctriptives of factor variables : \n")
+    cat("-------------------------------------- \n")
+    cat("\n")
+    cat("2.1 Number of levels: \n")
+    cat("------------------------------------------- \n")
+    print(x$factorLevelLength)
+    cat("\n")
+    cat("2.2 Frequency of levels: \n")
+    cat("------------------------------------- \n")
+    print(x$tables)
+  }
 }
 
