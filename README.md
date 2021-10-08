@@ -8,10 +8,7 @@ This package contains a personal collection of functions for:
 
 ## Installation
 
-`install_github("Poduval/rp/release/rp")`
+`install_github("Poduval/rp")`
 
 ## Reference
-Build R packages: http://r-pkgs.had.co.nz/
-
-## Final product
-`rp.tar.gz`
+Build R packages: <http://r-pkgs.had.co.nz/>

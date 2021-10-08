@@ -6,9 +6,12 @@ use_build_ignore(c('packaging.R', 'help', 'release',
                    "renv", 'renv.lock'))
 
 document()
+
 build(path = "release/", quiet = FALSE,
       binary = FALSE, vignettes = TRUE)
+
 check(quiet = TRUE)
+
 install()
 
 # *** RUN THIS SCRIPT IN A FRESH R SESSION ***
