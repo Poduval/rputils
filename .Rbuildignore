@@ -1,0 +1,7 @@
+^packaging\.R$
+^help$
+^release$
+^renv$
+^renv\.lock$
+^.*\.Rproj$
+^\.Rproj\.user$

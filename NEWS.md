@@ -1,3 +1,7 @@
+# Changes in version 0.0.4
+    
+* Updated the project structure..
+
 # Changes in version 0.0.3
     
 * Fixed bug with the calculation of `factorLevelLength`.
