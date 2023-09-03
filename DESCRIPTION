@@ -16,8 +16,6 @@ RoxygenNote: 7.2.3
 Imports: 
     diffr,
     openxlsx,
-    rstudioapi,
-    stats,
-    utils
+    rstudioapi
 URL: https://github.com/Poduval/rputils
 BugReports: https://github.com/Poduval/rputils/issues
