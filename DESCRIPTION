@@ -1,0 +1,22 @@
+Package: rputils
+Title: Some useful utility function - PRIVATE
+Version: 0.0.1
+Authors@R: 
+    person("Rakesh", "Poduval", , "poduval.rakesh@icloud.com", role = c("aut", "cre", "cph"))
+Description: This is a personal collection of functions for data analysis
+    and quick day to day R operations. Details will be provided via
+    vignett.
+License: GPL (>= 2)
+Depends: 
+    R (>= 3.6.3)
+Encoding: UTF-8
+LazyData: TRUE
+package: rputils
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    plyr,
+    stats,
+    utils
+URL: https://github.com/Poduval/rputils
+BugReports: https://github.com/Poduval/rputils/issues
