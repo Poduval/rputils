@@ -3,9 +3,8 @@ Title: Some useful utility function - PRIVATE
 Version: 0.0.1
 Authors@R: 
     person("Rakesh", "Poduval", , "poduval.rakesh@icloud.com", role = c("aut", "cre", "cph"))
-Description: This is a personal collection of functions for data analysis
-    and quick day to day R operations. Details will be provided via
-    vignett.
+Description: This is a personal collection of functions for day to day R
+    operations.
 License: GPL (>= 2)
 Depends: 
     R (>= 3.6.3)
@@ -15,6 +14,7 @@ package: rputils
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
+    diffr,
     plyr,
     stats,
     utils
