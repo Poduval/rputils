@@ -1,7 +1,9 @@
-^packaging\.R$
-^help$
-^release$
-^renv$
-^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^_make_package.R$
+[.]Rproj$
+^release$
+^backlog$
+^logo.png$
+^LICENSE\.md$
+^\.github$
